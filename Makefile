@@ -4,17 +4,17 @@ FLEX	= flex
 BISON 	= bison
 BFLAGS = -d -v
 
-parser: main.c parse.tab.c 
-	$(CC) main.c parse.tab.c $(CFLAGS) -o parser 
+parser: main.c ex1.tab.c 
+	$(CC) main.c ex1.tab.c $(CFLAGS) -o parser 
 
-parse.tab.c: parse.y lex.yy.c
-	$(BISON) $(BFLAGS) parse.y 
+ex1.tab.c: ex1.y lex.yy.c syntaxTreeNode.h
+	$(BISON) $(BFLAGS) ex1.y 
 
-lex.yy.c: scan.l 
-	$(FLEX) scan.l
+lex.yy.c: ex1.l 
+	$(FLEX) ex1.l
 
 .PHONY: play clean
-play: parser test.c
-	./parser test.c 
+play: parser test1.c
+	./parser test1.c 
 clean:
-	rm -rf parser lex.yy.c parse.tab.h parse.tab.c
+	rm -rf parser lex.yy.c ex1.tab.h ex1.tab.c
