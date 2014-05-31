@@ -71,12 +71,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
-#include "syntaxTreeNode.h"
+#include "symbol.h"
 #include "lex.yy.c"
-syntaxTreeNode* createNode(char *name, int degree, ...);
-void preOrderTraversal(syntaxTreeNode *root, int level);
+syntaxTreeNode* createNode(type_t type, int prodnum, char *name, int degree, ...); void preOrderTraversal(syntaxTreeNode *root, int level);
 void freeMem(syntaxTreeNode* root);
 int errorTag = 0;
+syntaxTreeNode* root;
 
 
 /* Line 268 of yacc.c  */
@@ -494,13 +494,13 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    40,    40,    48,    49,    52,    53,    54,    55,    58,
-      59,    63,    64,    67,    68,    71,    72,    75,    79,    80,
-      83,    84,    85,    88,    89,    92,    96,    97,   101,   102,
-     105,   106,   107,   108,   109,   110,   111,   115,   116,   119,
-     120,   123,   124,   127,   128,   132,   133,   134,   135,   136,
-     137,   138,   139,   140,   141,   142,   143,   144,   145,   146,
-     147,   148,   149,   150,   152,   153
+       0,    36,    36,    44,    45,    48,    49,    50,    51,    54,
+      55,    59,    60,    62,    63,    66,    67,    70,    74,    75,
+      78,    79,    80,    83,    84,    87,    91,    92,    96,    97,
+     100,   101,   102,   103,   104,   105,   106,   110,   111,   114,
+     115,   118,   119,   122,   123,   127,   128,   129,   130,   131,
+     132,   133,   134,   135,   136,   137,   138,   139,   140,   141,
+     142,   143,   144,   145,   147,   148
 };
 #endif
 
@@ -1580,418 +1580,419 @@ yyreduce:
         case 2:
 
 /* Line 1806 of yacc.c  */
-#line 40 "ex1.y"
+#line 36 "ex1.y"
     {
-						(yyval.node) = createNode("Program", 1, (yyvsp[(1) - (1)].node));
-						if (!errorTag) 
-							preOrderTraversal((yyval.node), 1);
-						freeMem((yyval.node));
+						(yyval.node) = createNode(Program, 1, "Program", 1, (yyvsp[(1) - (1)].node));
+						root = (yyval.node);
+//						if (!errorTag) 
+//							preOrderTraversal($$, 1);
+			//			freeMem($$);
 					}
     break;
 
   case 3:
 
 /* Line 1806 of yacc.c  */
-#line 48 "ex1.y"
-    {(yyval.node) = createNode("ExtDefList", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
+#line 44 "ex1.y"
+    {(yyval.node) = createNode(ExtDefList, 1, "ExtDefList", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
     break;
 
   case 4:
 
 /* Line 1806 of yacc.c  */
-#line 49 "ex1.y"
-    {(yyval.node) = createNode("ExtDefList", 0);}
+#line 45 "ex1.y"
+    {(yyval.node) = createNode(ExtDefList, 2, "ExtDefList", 0);}
     break;
 
   case 5:
 
 /* Line 1806 of yacc.c  */
-#line 52 "ex1.y"
-    {(yyval.node) = createNode("ExtDef", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 48 "ex1.y"
+    {(yyval.node) = createNode(ExtDef, 1, "ExtDef", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 6:
 
 /* Line 1806 of yacc.c  */
-#line 53 "ex1.y"
-    {(yyval.node) = createNode("ExtDef", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
+#line 49 "ex1.y"
+    {(yyval.node) = createNode(ExtDef, 2, "ExtDef", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
     break;
 
   case 7:
 
 /* Line 1806 of yacc.c  */
-#line 54 "ex1.y"
-    {(yyval.node) = createNode("ExtDef", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); }
+#line 50 "ex1.y"
+    {(yyval.node) = createNode(ExtDef, 3, "ExtDef", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); }
     break;
 
   case 9:
 
 /* Line 1806 of yacc.c  */
-#line 58 "ex1.y"
-    {(yyval.node) = createNode("ExtDecList", 1, (yyvsp[(1) - (1)].node));}
+#line 54 "ex1.y"
+    {(yyval.node) = createNode(ExtDecList, 1, "ExtDecList", 1, (yyvsp[(1) - (1)].node));}
     break;
 
   case 10:
 
 /* Line 1806 of yacc.c  */
-#line 59 "ex1.y"
-    {(yyval.node) = createNode("ExtDecList", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); }
+#line 55 "ex1.y"
+    {(yyval.node) = createNode(ExtDecList, 2, "ExtDecList", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); }
     break;
 
   case 11:
 
 /* Line 1806 of yacc.c  */
-#line 63 "ex1.y"
-    {(yyval.node) = createNode("Specifier", 1, (yyvsp[(1) - (1)].node));}
+#line 59 "ex1.y"
+    {(yyval.node) = createNode(Specifier, 1, "Specifier", 1, (yyvsp[(1) - (1)].node));}
     break;
 
   case 12:
 
 /* Line 1806 of yacc.c  */
-#line 64 "ex1.y"
-    {(yyval.node) = createNode("Specifier", 1, (yyvsp[(1) - (1)].node));}
+#line 60 "ex1.y"
+    {(yyval.node) = createNode(Specifier, 2, "Specifier", 1, (yyvsp[(1) - (1)].node));}
     break;
 
   case 13:
 
 /* Line 1806 of yacc.c  */
-#line 67 "ex1.y"
-    {(yyval.node) = createNode("StructSpecifier", 5, (yyvsp[(1) - (5)].node), (yyvsp[(2) - (5)].node), (yyvsp[(3) - (5)].node), (yyvsp[(4) - (5)].node), (yyvsp[(5) - (5)].node));}
+#line 62 "ex1.y"
+    {(yyval.node) = createNode(StructSpecifier, 1, "StructSpecifier", 5, (yyvsp[(1) - (5)].node), (yyvsp[(2) - (5)].node), (yyvsp[(3) - (5)].node), (yyvsp[(4) - (5)].node), (yyvsp[(5) - (5)].node));}
     break;
 
   case 14:
 
 /* Line 1806 of yacc.c  */
-#line 68 "ex1.y"
-    {(yyval.node) = createNode("StructSpecifier", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
+#line 63 "ex1.y"
+    {(yyval.node) = createNode(StructSpecifier, 2, "StructSpecifier", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
     break;
 
   case 15:
 
 /* Line 1806 of yacc.c  */
-#line 71 "ex1.y"
-    {(yyval.node) = createNode("OptTag", 1, (yyvsp[(1) - (1)].node));}
+#line 66 "ex1.y"
+    {(yyval.node) = createNode(OptTag, 1, "OptTag", 1, (yyvsp[(1) - (1)].node));}
     break;
 
   case 16:
 
 /* Line 1806 of yacc.c  */
-#line 72 "ex1.y"
-    {(yyval.node) = createNode("OptTag", 0);}
+#line 67 "ex1.y"
+    {(yyval.node) = createNode(OptTag, 2, "OptTag", 0);}
     break;
 
   case 17:
 
 /* Line 1806 of yacc.c  */
-#line 75 "ex1.y"
-    {(yyval.node) = createNode("Tag", 1, (yyvsp[(1) - (1)].node));}
+#line 70 "ex1.y"
+    {(yyval.node) = createNode(Tag, 1, "Tag", 1, (yyvsp[(1) - (1)].node));}
     break;
 
   case 18:
 
 /* Line 1806 of yacc.c  */
-#line 79 "ex1.y"
-    {(yyval.node) = createNode("VarDec", 1, (yyvsp[(1) - (1)].node));}
+#line 74 "ex1.y"
+    {(yyval.node) = createNode(VarDec, 1, "VarDec", 1, (yyvsp[(1) - (1)].node));}
     break;
 
   case 19:
 
 /* Line 1806 of yacc.c  */
-#line 80 "ex1.y"
-    {(yyval.node) = createNode("VarDec", 4, (yyvsp[(1) - (4)].node), (yyvsp[(2) - (4)].node), (yyvsp[(3) - (4)].node), (yyvsp[(4) - (4)].node));}
+#line 75 "ex1.y"
+    {(yyval.node) = createNode(VarDec, 2, "VarDec", 4, (yyvsp[(1) - (4)].node), (yyvsp[(2) - (4)].node), (yyvsp[(3) - (4)].node), (yyvsp[(4) - (4)].node));}
     break;
 
   case 20:
 
 /* Line 1806 of yacc.c  */
-#line 83 "ex1.y"
-    {(yyval.node) = createNode("FunDec", 4, (yyvsp[(1) - (4)].node), (yyvsp[(2) - (4)].node), (yyvsp[(3) - (4)].node), (yyvsp[(4) - (4)].node));}
+#line 78 "ex1.y"
+    {(yyval.node) = createNode(FunDec, 1, "FunDec", 4, (yyvsp[(1) - (4)].node), (yyvsp[(2) - (4)].node), (yyvsp[(3) - (4)].node), (yyvsp[(4) - (4)].node));}
     break;
 
   case 21:
 
 /* Line 1806 of yacc.c  */
-#line 84 "ex1.y"
-    {(yyval.node) = createNode("FunDec", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 79 "ex1.y"
+    {(yyval.node) = createNode(FunDec, 2, "FunDec", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 23:
 
 /* Line 1806 of yacc.c  */
-#line 88 "ex1.y"
-    {(yyval.node) = createNode("VarList", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(2) - (3)].node));}
+#line 83 "ex1.y"
+    {(yyval.node) = createNode(VarList, 1, "VarList", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(2) - (3)].node));}
     break;
 
   case 24:
 
 /* Line 1806 of yacc.c  */
-#line 89 "ex1.y"
-    {(yyval.node) = createNode("VarList", 1, (yyvsp[(1) - (1)].node));}
+#line 84 "ex1.y"
+    {(yyval.node) = createNode(VarList, 2, "VarList", 1, (yyvsp[(1) - (1)].node));}
     break;
 
   case 25:
 
 /* Line 1806 of yacc.c  */
-#line 92 "ex1.y"
-    {(yyval.node) = createNode("ParamDec", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
+#line 87 "ex1.y"
+    {(yyval.node) = createNode(ParamDec, 1, "ParamDec", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
     break;
 
   case 26:
 
 /* Line 1806 of yacc.c  */
-#line 96 "ex1.y"
-    {(yyval.node) = createNode("CompSt", 4, (yyvsp[(1) - (4)].node), (yyvsp[(2) - (4)].node), (yyvsp[(3) - (4)].node), (yyvsp[(4) - (4)].node));}
+#line 91 "ex1.y"
+    {(yyval.node) = createNode(CompSt, 1, "CompSt", 4, (yyvsp[(1) - (4)].node), (yyvsp[(2) - (4)].node), (yyvsp[(3) - (4)].node), (yyvsp[(4) - (4)].node));}
     break;
 
   case 28:
 
 /* Line 1806 of yacc.c  */
-#line 101 "ex1.y"
-    {(yyval.node) = createNode("StmtList", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
+#line 96 "ex1.y"
+    {(yyval.node) = createNode(StmtList, 1, "StmtList", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
     break;
 
   case 29:
 
 /* Line 1806 of yacc.c  */
-#line 102 "ex1.y"
-    {(yyval.node) = createNode("StmtList", 0);}
+#line 97 "ex1.y"
+    {(yyval.node) = createNode(StmtList, 2, "StmtList", 0);}
     break;
 
   case 30:
 
 /* Line 1806 of yacc.c  */
-#line 105 "ex1.y"
-    {(yyval.node) = createNode("Stmt", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
+#line 100 "ex1.y"
+    {(yyval.node) = createNode(Stmt, 1, "Stmt", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
     break;
 
   case 31:
 
 /* Line 1806 of yacc.c  */
-#line 106 "ex1.y"
-    {(yyval.node) = createNode("Stmt", 1, (yyvsp[(1) - (1)].node));}
+#line 101 "ex1.y"
+    {(yyval.node) = createNode(Stmt, 2, "Stmt", 1, (yyvsp[(1) - (1)].node));}
     break;
 
   case 32:
 
 /* Line 1806 of yacc.c  */
-#line 107 "ex1.y"
-    {(yyval.node) = createNode("Stmt", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 102 "ex1.y"
+    {(yyval.node) = createNode(Stmt, 3, "Stmt", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 33:
 
 /* Line 1806 of yacc.c  */
-#line 108 "ex1.y"
-    {(yyval.node) = createNode("Stmt", 4, (yyvsp[(1) - (5)].node), (yyvsp[(2) - (5)].node), (yyvsp[(3) - (5)].node), (yyvsp[(4) - (5)].node));}
+#line 103 "ex1.y"
+    {(yyval.node) = createNode(Stmt, 4, "Stmt", 4, (yyvsp[(1) - (5)].node), (yyvsp[(2) - (5)].node), (yyvsp[(3) - (5)].node), (yyvsp[(4) - (5)].node));}
     break;
 
   case 34:
 
 /* Line 1806 of yacc.c  */
-#line 109 "ex1.y"
-    {(yyval.node) = createNode("Stmt", 7, (yyvsp[(1) - (7)].node), (yyvsp[(2) - (7)].node), (yyvsp[(3) - (7)].node), (yyvsp[(4) - (7)].node), (yyvsp[(5) - (7)].node), (yyvsp[(6) - (7)].node), (yyvsp[(7) - (7)].node));}
+#line 104 "ex1.y"
+    {(yyval.node) = createNode(Stmt, 5, "Stmt", 7, (yyvsp[(1) - (7)].node), (yyvsp[(2) - (7)].node), (yyvsp[(3) - (7)].node), (yyvsp[(4) - (7)].node), (yyvsp[(5) - (7)].node), (yyvsp[(6) - (7)].node), (yyvsp[(7) - (7)].node));}
     break;
 
   case 35:
 
 /* Line 1806 of yacc.c  */
-#line 110 "ex1.y"
-    {(yyval.node) = createNode("Stmt", 4, (yyvsp[(1) - (5)].node), (yyvsp[(2) - (5)].node), (yyvsp[(3) - (5)].node), (yyvsp[(4) - (5)].node));}
+#line 105 "ex1.y"
+    {(yyval.node) = createNode(Stmt, 6, "Stmt", 5, (yyvsp[(1) - (5)].node), (yyvsp[(2) - (5)].node), (yyvsp[(3) - (5)].node), (yyvsp[(4) - (5)].node), (yyvsp[(5) - (5)].node));}
     break;
 
   case 37:
 
 /* Line 1806 of yacc.c  */
-#line 115 "ex1.y"
-    {(yyval.node) = createNode("DefList", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
+#line 110 "ex1.y"
+    {(yyval.node) = createNode(DefList, 1, "DefList", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
     break;
 
   case 38:
 
 /* Line 1806 of yacc.c  */
-#line 116 "ex1.y"
-    {(yyval.node) = createNode("DefList", 0);}
+#line 111 "ex1.y"
+    {(yyval.node) = createNode(DefList, 2, "DefList", 0);}
     break;
 
   case 39:
 
 /* Line 1806 of yacc.c  */
-#line 119 "ex1.y"
-    {(yyval.node) = createNode("Def", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 114 "ex1.y"
+    {(yyval.node) = createNode(Def, 1, "Def", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 41:
 
 /* Line 1806 of yacc.c  */
-#line 123 "ex1.y"
-    {(yyval.node) = createNode("DecList", 1, (yyvsp[(1) - (1)].node));}
+#line 118 "ex1.y"
+    {(yyval.node) = createNode(DecList, 1, "DecList", 1, (yyvsp[(1) - (1)].node));}
     break;
 
   case 42:
 
 /* Line 1806 of yacc.c  */
-#line 124 "ex1.y"
-    {(yyval.node) = createNode("DecList", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 119 "ex1.y"
+    {(yyval.node) = createNode(DecList, 2, "DecList", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 43:
 
 /* Line 1806 of yacc.c  */
-#line 127 "ex1.y"
-    {(yyval.node) = createNode("Dec", 1, (yyvsp[(1) - (1)].node));}
+#line 122 "ex1.y"
+    {(yyval.node) = createNode(Dec, 1, "Dec", 1, (yyvsp[(1) - (1)].node));}
     break;
 
   case 44:
 
 /* Line 1806 of yacc.c  */
-#line 128 "ex1.y"
-    {(yyval.node) = createNode("Dec", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 123 "ex1.y"
+    {(yyval.node) = createNode(Dec, 2, "Dec", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 45:
 
 /* Line 1806 of yacc.c  */
-#line 132 "ex1.y"
-    {(yyval.node) = createNode("Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 127 "ex1.y"
+    {(yyval.node) = createNode(Exp, 1, "Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 46:
 
 /* Line 1806 of yacc.c  */
-#line 133 "ex1.y"
-    {(yyval.node) = createNode("Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 128 "ex1.y"
+    {(yyval.node) = createNode(Exp, 2, "Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 47:
 
 /* Line 1806 of yacc.c  */
-#line 134 "ex1.y"
-    {(yyval.node) = createNode("Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 129 "ex1.y"
+    {(yyval.node) = createNode(Exp, 3, "Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 48:
 
 /* Line 1806 of yacc.c  */
-#line 135 "ex1.y"
-    {(yyval.node) = createNode("Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 130 "ex1.y"
+    {(yyval.node) = createNode(Exp, 4, "Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 49:
 
 /* Line 1806 of yacc.c  */
-#line 136 "ex1.y"
-    {(yyval.node) = createNode("Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 131 "ex1.y"
+    {(yyval.node) = createNode(Exp, 5, "Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 50:
 
 /* Line 1806 of yacc.c  */
-#line 137 "ex1.y"
-    {(yyval.node) = createNode("Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 132 "ex1.y"
+    {(yyval.node) = createNode(Exp, 6, "Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 51:
 
 /* Line 1806 of yacc.c  */
-#line 138 "ex1.y"
-    {(yyval.node) = createNode("Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 133 "ex1.y"
+    {(yyval.node) = createNode(Exp, 7, "Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 52:
 
 /* Line 1806 of yacc.c  */
-#line 139 "ex1.y"
-    {(yyval.node) = createNode("Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 134 "ex1.y"
+    {(yyval.node) = createNode(Exp, 8, "Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 53:
 
 /* Line 1806 of yacc.c  */
-#line 140 "ex1.y"
-    {(yyval.node) = createNode("Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 135 "ex1.y"
+    {(yyval.node) = createNode(Exp, 9, "Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 54:
 
 /* Line 1806 of yacc.c  */
-#line 141 "ex1.y"
-    {(yyval.node) = createNode("Exp", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
+#line 136 "ex1.y"
+    {(yyval.node) = createNode(Exp, 10, "Exp", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
     break;
 
   case 55:
 
 /* Line 1806 of yacc.c  */
-#line 142 "ex1.y"
-    {(yyval.node) = createNode("Exp", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
+#line 137 "ex1.y"
+    {(yyval.node) = createNode(Exp, 11, "Exp", 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node));}
     break;
 
   case 56:
 
 /* Line 1806 of yacc.c  */
-#line 143 "ex1.y"
-    {(yyval.node) = createNode("Exp", 4, (yyvsp[(1) - (4)].node), (yyvsp[(2) - (4)].node), (yyvsp[(3) - (4)].node), (yyvsp[(4) - (4)].node));}
+#line 138 "ex1.y"
+    {(yyval.node) = createNode(Exp, 12, "Exp", 4, (yyvsp[(1) - (4)].node), (yyvsp[(2) - (4)].node), (yyvsp[(3) - (4)].node), (yyvsp[(4) - (4)].node));}
     break;
 
   case 57:
 
 /* Line 1806 of yacc.c  */
-#line 144 "ex1.y"
-    {(yyval.node) = createNode("Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 139 "ex1.y"
+    {(yyval.node) = createNode(Exp, 13, "Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 58:
 
 /* Line 1806 of yacc.c  */
-#line 145 "ex1.y"
-    {(yyval.node) = createNode("Exp", 4, (yyvsp[(1) - (4)].node), (yyvsp[(2) - (4)].node), (yyvsp[(3) - (4)].node), (yyvsp[(4) - (4)].node));}
+#line 140 "ex1.y"
+    {(yyval.node) = createNode(Exp, 14, "Exp", 4, (yyvsp[(1) - (4)].node), (yyvsp[(2) - (4)].node), (yyvsp[(3) - (4)].node), (yyvsp[(4) - (4)].node));}
     break;
 
   case 59:
 
 /* Line 1806 of yacc.c  */
-#line 146 "ex1.y"
-    {(yyval.node) = createNode("Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 141 "ex1.y"
+    {(yyval.node) = createNode(Exp, 15, "Exp", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 60:
 
 /* Line 1806 of yacc.c  */
-#line 147 "ex1.y"
-    {(yyval.node) = createNode("Exp", 1, (yyvsp[(1) - (1)].node));}
+#line 142 "ex1.y"
+    {(yyval.node) = createNode(Exp, 16, "Exp", 1, (yyvsp[(1) - (1)].node));}
     break;
 
   case 61:
 
 /* Line 1806 of yacc.c  */
-#line 148 "ex1.y"
-    {(yyval.node) = createNode("Exp", 1, (yyvsp[(1) - (1)].node));}
+#line 143 "ex1.y"
+    {(yyval.node) = createNode(Exp, 17, "Exp", 1, (yyvsp[(1) - (1)].node));}
     break;
 
   case 62:
 
 /* Line 1806 of yacc.c  */
-#line 149 "ex1.y"
-    {(yyval.node) = createNode("Exp", 1, (yyvsp[(1) - (1)].node));}
+#line 144 "ex1.y"
+    {(yyval.node) = createNode(Exp, 18, "Exp", 1, (yyvsp[(1) - (1)].node));}
     break;
 
   case 64:
 
 /* Line 1806 of yacc.c  */
-#line 152 "ex1.y"
-    {(yyval.node) = createNode("Args", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
+#line 147 "ex1.y"
+    {(yyval.node) = createNode(Args, 1, "Args", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 65:
 
 /* Line 1806 of yacc.c  */
-#line 153 "ex1.y"
-    {(yyval.node) = createNode("Args", 1, (yyvsp[(1) - (1)].node));}
+#line 148 "ex1.y"
+    {(yyval.node) = createNode(Args, 2, "Args", 1, (yyvsp[(1) - (1)].node));}
     break;
 
 
 
 /* Line 1806 of yacc.c  */
-#line 1995 "ex1.tab.c"
+#line 1996 "ex1.tab.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2229,7 +2230,7 @@ yyreturn:
 
 
 /* Line 2067 of yacc.c  */
-#line 155 "ex1.y"
+#line 150 "ex1.y"
 
 
 int yyerror(char *s) {
@@ -2241,16 +2242,24 @@ int yywrap() {
 	return 1;
 }
 
-syntaxTreeNode* createNode(char *name, int degree, ...) {
+syntaxTreeNode* createNode(type_t type, int prodnum, char *name, int degree, ...) {
 	syntaxTreeNode *newNode;
 	int i;
 	va_list ap;
-	va_start(ap, degree);
 	if (!(newNode = (syntaxTreeNode*)malloc(sizeof(syntaxTreeNode)))) {
 		printf("error allocating memory");
 		exit(1);
 	}
 	memset(newNode, 0, sizeof(*newNode));
+	strncpy(newNode->name, name, 16);
+	newNode->degree = degree;
+	newNode->type = type;
+	newNode->prodnum = prodnum;
+	if (!degree) {
+		newNode->lineno = 0; 
+		return newNode;
+	}
+	va_start(ap, degree);
 	if (!(newNode->children = (syntaxTreeNode**)malloc(degree * sizeof(syntaxTreeNode*)))) {
 		printf("error allocating memory");
 		exit(1);
@@ -2260,38 +2269,35 @@ syntaxTreeNode* createNode(char *name, int degree, ...) {
 		newNode->children[i] = va_arg(ap,syntaxTreeNode*);
 	}
 	va_end(ap);
-	strncpy(newNode->nonterminal, name, 16);
-	newNode->lineno = degree == 0 ? 0 : newNode->children[0]->lineno;
-	newNode->degree = degree;
-	newNode->type= CGRAMMAR;
+	newNode->lineno = newNode->children[0]->lineno;
 	return newNode;
 }
 
 void preOrderTraversal(syntaxTreeNode* root, int level) {
 	int i;
-	if (root->type == CGRAMMAR && !root->degree)
+	if (root->type > TWHILE && !root->degree)
 		return;
 	for (i = 0; i < level; i++) 
 		printf("  ");
-	if (root->type == CGRAMMAR)  {
-		printf("%s (%d)\n", root->nonterminal, root->lineno);
+	if (root->type > TWHILE)  {
+		printf("%s (%d)\n", root->name, root->lineno);
 		for (i = 0; i < root->degree; i++) 
 			preOrderTraversal(root->children[i], level + 1);
 	}
-	else if (root->type == CID) {
-		printf("%s: %s \n", root->terminal, root->idval);
+	else if (root->type == TID) {
+		printf("%s: %s \n", root->name, root->idval);
 	}
-	else if (root->type == CTYPE) {
-		printf("%s: %s\n",  root->terminal, root->otherval);
+	else if (root->type == TTYPE) {
+		printf("%s: %s\n",  root->name, root->otherval);
 	}
-	else if (root->type == CINT) {
-		printf("%s: %d\n", root->terminal, root->ival);
+	else if (root->type == TINT) {
+		printf("%s: %d\n", root->name, root->ival);
 	}
-	else if (root->type == CFLOAT) {
-		printf("%s: %f\n", root->terminal, root->fval);
+	else if (root->type == TFLOAT) {
+		printf("%s: %f\n", root->name, root->fval);
 	}
 	else {
-		printf("%s \n", root->terminal);
+		printf("%s \n", root->name);
 	}
 		
 }
@@ -2299,13 +2305,11 @@ void preOrderTraversal(syntaxTreeNode* root, int level) {
 void freeMem(syntaxTreeNode* root) {
 	int i;
 	if (!root) return;
-	if (root->type == CGRAMMAR) {
+	if (root->type >= TWHILE) {
 		for (i = 0; i < root->degree; i++) 
 			freeMem(root->children[i]);
 		free(root->children);
 	}
 	free(root);
 }
-
-		
 

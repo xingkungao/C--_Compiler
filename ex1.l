@@ -2,11 +2,10 @@
 #include <stdio.h>
 #include <string.h>
 #include "ex1.tab.h"
-#include "syntaxTreeNode.h"
+#include "symbol.h"
 	extern int errorTag;
 
-syntaxTreeNode* createLeaf(char *s, void *p, type_t type, int line);
-
+syntaxTreeNode* createLeaf(char *s, void *p, type_t type, int line); 
 int yycolumn = 1;
 #define  YY_USER_ACTION yylloc.first_line = yylloc.last_line = yylineno; \
 	yylloc.first_column = yycolumn; yylloc.last_column = yycolumn + yyleng -1; \
@@ -52,13 +51,13 @@ RELOP ">"|"<"|">="|"<="|"=="|"!="
 				for (i = 1; i < yyleng; i++) {
 					val = 8 * val +  (yytext[i] - '0');
 				}
-				yylval.node = createLeaf("INT", (void*)&val, CINT, yylineno);
+				yylval.node = createLeaf("INT", (void*)&val, TINT, yylineno);
 				return INT;
 			}
 
 {DECIMAL}	{
 				int val = atoi(yytext);
-				yylval.node = createLeaf("INT", (void*)&val, CINT, yylineno);
+				yylval.node = createLeaf("INT", (void*)&val, TINT, yylineno);
 				return INT;
 			}
 
@@ -73,138 +72,138 @@ RELOP ">"|"<"|">="|"<="|"=="|"!="
 					else if ('a' <= yytext[i] && yytext[i] <= 'f')
 						val = 16 * val +  (yytext[i] - 'a' + 10);
 				}
-				yylval.node = createLeaf("INT", (void*)&val, CINT, yylineno);
+				yylval.node = createLeaf("INT", (void*)&val, TINT, yylineno);
 				return INT;
 			}
 
 {FLOAT}		{
 				float val = atof(yytext);
-				yylval.node = createLeaf("FLOAT", (void*)&val, CFLOAT, yylineno);
+				yylval.node = createLeaf("FLOAT", (void*)&val, TFLOAT, yylineno);
 				return FLOAT;
 			}
 
 ";"			{
-				yylval.node = createLeaf("SEMI", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("SEMI", yytext, TSEMI, yylineno);
 				return SEMI;
 			}
 
 ","			{
-				yylval.node = createLeaf("COMMA", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("COMMA", yytext, TCOMMA, yylineno);
 				return COMMA;
 			}
 
 "="			{
-				yylval.node = createLeaf("ASSIGNOP", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("ASSIGNOP", yytext, TASSIGNOP, yylineno);
 				return ASSIGNOP;
 			}
 
 {RELOP}     {
-				yylval.node = createLeaf("RELOP", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("RELOP", yytext, TRELOP, yylineno);
 				return RELOP;
 			}
 
 "+"			{
-				yylval.node = createLeaf("PLUS", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("PLUS", yytext, TPLUS, yylineno);
 				return PLUS;
 			}
 
 "-"			{
-				yylval.node = createLeaf("MINUS", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("MINUS", yytext, TMINUS, yylineno);
 				return MINUS;
 			}
 
 "*"			{
-				yylval.node = createLeaf("STAR", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("STAR", yytext, TSTAR, yylineno);
 				return STAR;
 			}
 
 "/"			{
-				yylval.node = createLeaf("DIV", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("DIV", yytext, TDIV, yylineno);
 				return DIV;
 			}
 
 "&&"		{
-				yylval.node = createLeaf("AND", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("AND", yytext, TAND, yylineno);
 				return AND;
 			}
 
 "||"		{
-				yylval.node = createLeaf("OR", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("OR", yytext, TOR, yylineno);
 				return OR;
 			}
 
 "!"			{
-				yylval.node = createLeaf("NOT", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("NOT", yytext, TNOT, yylineno);
 				return NOT;
 			}
 
 "."			{
-				yylval.node = createLeaf("DOT", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("DOT", yytext, TDOT, yylineno);
 				return DOT;
 			}
 
 "("			{
-				yylval.node = createLeaf("LP", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("LP", yytext, TLP, yylineno);
 				return LP;
 			}
 
 ")"			{
-				yylval.node = createLeaf("RP", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("RP", yytext, TRP, yylineno);
 				return RP;
 			}
 
 "["			{
-				yylval.node = createLeaf("LB", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("LB", yytext, TLB, yylineno);
 				return LB;
 			}
 
 "]"			{
-				yylval.node = createLeaf("RB", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("RB", yytext, TRB, yylineno);
 				return RB;
 			}
 
 "{"			{
-				yylval.node = createLeaf("LC", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("LC", yytext, TLC, yylineno);
 				return LC;
 			}
 
 "}"			{
-				yylval.node = createLeaf("RC", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("RC", yytext, TRC, yylineno);
 				return RC;
 			}
 
 "struct"	{
-				yylval.node = createLeaf("STRUCT", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("STRUCT", yytext, TSTRUCT, yylineno);
 				return STRUCT;
 			}
 
 "return"	{
-				yylval.node = createLeaf("RETURN", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("RETURN", yytext, TRETURN, yylineno);
 				return RETURN;
 			}
 
 "if"		{
-				yylval.node = createLeaf("IF", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("IF", yytext, TIF, yylineno);
 				return IF;
 			}
 
 "else"		{
-				yylval.node = createLeaf("ELSE", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("ELSE", yytext, TELSE, yylineno);
 				return ELSE;
 			}
 
 "while"		{
-				yylval.node = createLeaf("WHILE", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("WHILE", yytext, TWHILE, yylineno);
 				return WHILE;
 			}
 
 "int"|"float" {
-				yylval.node = createLeaf("TYPE", yytext, CTYPE, yylineno);
+				yylval.node = createLeaf("TYPE", yytext, TTYPE, yylineno);
 				return TYPE;
 			  }
 
 {ID}		{ 
-				yylval.node = createLeaf("ID", yytext, CID, yylineno);
+				yylval.node = createLeaf("ID", yytext, TID, yylineno);
 				return ID;
 			}
 
@@ -220,14 +219,14 @@ syntaxTreeNode* createLeaf(char* specifier, void *val, type_t type, int line) {
 	memset(newNode, 0, sizeof(*newNode));
 	newNode->type = type;
 	newNode->lineno = line;
-	strncpy(newNode->terminal, specifier, 16);
-	if (type == CINT) {
+	strncpy(newNode->name, specifier, 16);
+	if (type == TINT) {
 		newNode->ival = *(int*)val;
 	}
-	else if (type == CFLOAT) {
+	else if (type == TFLOAT) {
 		newNode->fval = *(float*)val;
 	}
-	else if (type == CID) {
+	else if (type == TID) {
 		strncpy(newNode->idval, (char*)val, 32);
 	}
 	else {

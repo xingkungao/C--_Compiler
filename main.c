@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "symbol.h"
 
 int main(int argc, char** argv) {
 	FILE* f;
@@ -11,7 +12,10 @@ int main(int argc, char** argv) {
 			perror(argv[1]);
 			return 1;
 		}
+	init();
 	yyrestart(f);
 	yyparse();
+	initSymbolTable();
+	traverse(root, 0);
 	return 0;
 }

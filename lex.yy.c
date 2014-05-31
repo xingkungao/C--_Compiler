@@ -559,17 +559,16 @@ char *yytext;
 #include <stdio.h>
 #include <string.h>
 #include "ex1.tab.h"
-#include "syntaxTreeNode.h"
+#include "symbol.h"
 	extern int errorTag;
 
-syntaxTreeNode* createLeaf(char *s, void *p, type_t type, int line);
-
+syntaxTreeNode* createLeaf(char *s, void *p, type_t type, int line); 
 int yycolumn = 1;
 #define  YY_USER_ACTION yylloc.first_line = yylloc.last_line = yylineno; \
 	yylloc.first_column = yycolumn; yylloc.last_column = yycolumn + yyleng -1; \
 	yycolumn += yyleng;
 
-#line 573 "lex.yy.c"
+#line 572 "lex.yy.c"
 
 #define INITIAL 0
 #define COMMENTS 1
@@ -757,9 +756,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 27 "ex1.l"
+#line 26 "ex1.l"
 
-#line 763 "lex.yy.c"
+#line 762 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -854,7 +853,7 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 28 "ex1.l"
+#line 27 "ex1.l"
 { 
 				char c = input();
 				while (c != '\n' && c != EOF)
@@ -866,34 +865,34 @@ YY_RULE_SETUP
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 37 "ex1.l"
+#line 36 "ex1.l"
 {BEGIN(COMMENTS);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 38 "ex1.l"
+#line 37 "ex1.l"
 {BEGIN(INITIAL);}
 	YY_BREAK
 case 4:
 /* rule 4 can match eol */
 YY_RULE_SETUP
-#line 39 "ex1.l"
+#line 38 "ex1.l"
 {}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 40 "ex1.l"
+#line 39 "ex1.l"
 {}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 42 "ex1.l"
+#line 41 "ex1.l"
 
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 44 "ex1.l"
+#line 43 "ex1.l"
 {
 				yycolumn = 1;
 //				return NEWLINE;
@@ -901,29 +900,29 @@ YY_RULE_SETUP
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 49 "ex1.l"
+#line 48 "ex1.l"
 {
 				int val = 0;
 				int i;
 				for (i = 1; i < yyleng; i++) {
 					val = 8 * val +  (yytext[i] - '0');
 				}
-				yylval.node = createLeaf("INT", (void*)&val, CINT, yylineno);
+				yylval.node = createLeaf("INT", (void*)&val, TINT, yylineno);
 				return INT;
 			}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 59 "ex1.l"
+#line 58 "ex1.l"
 {
 				int val = atoi(yytext);
-				yylval.node = createLeaf("INT", (void*)&val, CINT, yylineno);
+				yylval.node = createLeaf("INT", (void*)&val, TINT, yylineno);
 				return INT;
 			}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 65 "ex1.l"
+#line 64 "ex1.l"
 {
 				int val = 0;
 				int i;
@@ -935,230 +934,230 @@ YY_RULE_SETUP
 					else if ('a' <= yytext[i] && yytext[i] <= 'f')
 						val = 16 * val +  (yytext[i] - 'a' + 10);
 				}
-				yylval.node = createLeaf("INT", (void*)&val, CINT, yylineno);
+				yylval.node = createLeaf("INT", (void*)&val, TINT, yylineno);
 				return INT;
 			}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 80 "ex1.l"
+#line 79 "ex1.l"
 {
 				float val = atof(yytext);
-				yylval.node = createLeaf("FLOAT", (void*)&val, CFLOAT, yylineno);
+				yylval.node = createLeaf("FLOAT", (void*)&val, TFLOAT, yylineno);
 				return FLOAT;
 			}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 86 "ex1.l"
+#line 85 "ex1.l"
 {
-				yylval.node = createLeaf("SEMI", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("SEMI", yytext, TSEMI, yylineno);
 				return SEMI;
 			}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 91 "ex1.l"
+#line 90 "ex1.l"
 {
-				yylval.node = createLeaf("COMMA", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("COMMA", yytext, TCOMMA, yylineno);
 				return COMMA;
 			}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 96 "ex1.l"
+#line 95 "ex1.l"
 {
-				yylval.node = createLeaf("ASSIGNOP", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("ASSIGNOP", yytext, TASSIGNOP, yylineno);
 				return ASSIGNOP;
 			}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 101 "ex1.l"
+#line 100 "ex1.l"
 {
-				yylval.node = createLeaf("RELOP", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("RELOP", yytext, TRELOP, yylineno);
 				return RELOP;
 			}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 106 "ex1.l"
+#line 105 "ex1.l"
 {
-				yylval.node = createLeaf("PLUS", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("PLUS", yytext, TPLUS, yylineno);
 				return PLUS;
 			}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 111 "ex1.l"
+#line 110 "ex1.l"
 {
-				yylval.node = createLeaf("MINUS", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("MINUS", yytext, TMINUS, yylineno);
 				return MINUS;
 			}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 116 "ex1.l"
+#line 115 "ex1.l"
 {
-				yylval.node = createLeaf("STAR", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("STAR", yytext, TSTAR, yylineno);
 				return STAR;
 			}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 121 "ex1.l"
+#line 120 "ex1.l"
 {
-				yylval.node = createLeaf("DIV", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("DIV", yytext, TDIV, yylineno);
 				return DIV;
 			}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 126 "ex1.l"
+#line 125 "ex1.l"
 {
-				yylval.node = createLeaf("AND", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("AND", yytext, TAND, yylineno);
 				return AND;
 			}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 131 "ex1.l"
+#line 130 "ex1.l"
 {
-				yylval.node = createLeaf("OR", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("OR", yytext, TOR, yylineno);
 				return OR;
 			}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 136 "ex1.l"
+#line 135 "ex1.l"
 {
-				yylval.node = createLeaf("NOT", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("NOT", yytext, TNOT, yylineno);
 				return NOT;
 			}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 141 "ex1.l"
+#line 140 "ex1.l"
 {
-				yylval.node = createLeaf("DOT", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("DOT", yytext, TDOT, yylineno);
 				return DOT;
 			}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 146 "ex1.l"
+#line 145 "ex1.l"
 {
-				yylval.node = createLeaf("LP", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("LP", yytext, TLP, yylineno);
 				return LP;
 			}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 151 "ex1.l"
+#line 150 "ex1.l"
 {
-				yylval.node = createLeaf("RP", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("RP", yytext, TRP, yylineno);
 				return RP;
 			}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 156 "ex1.l"
+#line 155 "ex1.l"
 {
-				yylval.node = createLeaf("LB", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("LB", yytext, TLB, yylineno);
 				return LB;
 			}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 161 "ex1.l"
+#line 160 "ex1.l"
 {
-				yylval.node = createLeaf("RB", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("RB", yytext, TRB, yylineno);
 				return RB;
 			}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 166 "ex1.l"
+#line 165 "ex1.l"
 {
-				yylval.node = createLeaf("LC", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("LC", yytext, TLC, yylineno);
 				return LC;
 			}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 171 "ex1.l"
+#line 170 "ex1.l"
 {
-				yylval.node = createLeaf("RC", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("RC", yytext, TRC, yylineno);
 				return RC;
 			}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 176 "ex1.l"
+#line 175 "ex1.l"
 {
-				yylval.node = createLeaf("STRUCT", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("STRUCT", yytext, TSTRUCT, yylineno);
 				return STRUCT;
 			}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 181 "ex1.l"
+#line 180 "ex1.l"
 {
-				yylval.node = createLeaf("RETURN", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("RETURN", yytext, TRETURN, yylineno);
 				return RETURN;
 			}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 186 "ex1.l"
+#line 185 "ex1.l"
 {
-				yylval.node = createLeaf("IF", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("IF", yytext, TIF, yylineno);
 				return IF;
 			}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 191 "ex1.l"
+#line 190 "ex1.l"
 {
-				yylval.node = createLeaf("ELSE", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("ELSE", yytext, TELSE, yylineno);
 				return ELSE;
 			}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 196 "ex1.l"
+#line 195 "ex1.l"
 {
-				yylval.node = createLeaf("WHILE", yytext, COTHERLEXEME, yylineno);
+				yylval.node = createLeaf("WHILE", yytext, TWHILE, yylineno);
 				return WHILE;
 			}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 201 "ex1.l"
+#line 200 "ex1.l"
 {
-				yylval.node = createLeaf("TYPE", yytext, CTYPE, yylineno);
+				yylval.node = createLeaf("TYPE", yytext, TTYPE, yylineno);
 				return TYPE;
 			  }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 206 "ex1.l"
+#line 205 "ex1.l"
 { 
-				yylval.node = createLeaf("ID", yytext, CID, yylineno);
+				yylval.node = createLeaf("ID", yytext, TID, yylineno);
 				return ID;
 			}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 211 "ex1.l"
+#line 210 "ex1.l"
 {printf("Error type 1 at line %d: unknown char: %s\n", yylineno, yytext);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 212 "ex1.l"
+#line 211 "ex1.l"
 ECHO;
 	YY_BREAK
-#line 1162 "lex.yy.c"
+#line 1161 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(COMMENTS):
 	yyterminate();
@@ -2169,7 +2168,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 212 "ex1.l"
+#line 211 "ex1.l"
 
 
 
@@ -2182,14 +2181,14 @@ syntaxTreeNode* createLeaf(char* specifier, void *val, type_t type, int line) {
 	memset(newNode, 0, sizeof(*newNode));
 	newNode->type = type;
 	newNode->lineno = line;
-	strncpy(newNode->terminal, specifier, 16);
-	if (type == CINT) {
+	strncpy(newNode->name, specifier, 16);
+	if (type == TINT) {
 		newNode->ival = *(int*)val;
 	}
-	else if (type == CFLOAT) {
+	else if (type == TFLOAT) {
 		newNode->fval = *(float*)val;
 	}
-	else if (type == CID) {
+	else if (type == TID) {
 		strncpy(newNode->idval, (char*)val, 32);
 	}
 	else {
