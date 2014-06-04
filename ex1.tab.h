@@ -75,7 +75,7 @@ typedef union YYSTYPE
 {
 
 /* Line 2068 of yacc.c  */
-#line 14 "ex1.y"
+#line 15 "ex1.y"
 
 	syntaxTreeNode* node;
 

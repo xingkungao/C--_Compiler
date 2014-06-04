@@ -4,7 +4,8 @@
 #include <stdarg.h>
 #include "symbol.h"
 #include "lex.yy.c"
-syntaxTreeNode* createNode(type_t type, int prodnum, char *name, int degree, ...); void preOrderTraversal(syntaxTreeNode *root, int level);
+syntaxTreeNode* createNode(type_t type, int prodnum, char *name, int degree, ...);
+void preOrderTraversal(syntaxTreeNode *root, int level);
 void freeMem(syntaxTreeNode* root);
 int errorTag = 0;
 syntaxTreeNode* root;

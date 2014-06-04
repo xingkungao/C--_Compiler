@@ -1,12 +1,27 @@
-/*************************************************************************
-    > File Name: aa.c
-    > Author: lax
-    > Mail: xingkungao@gmail.com
-    > Created Time: Thu 08 May 2014 09:18:44 AM CST
- ************************************************************************/
+struct A{
+	int x[2];
+	int y[3][4];
+};
+int c(struct A a) {
+	return 0;
+}
+int g(int b) {
+	return 0;
+}
+
+int f(int a) {
+	return 0;
+}
+
+int xf(int a) {
+	return 0;
+}
+int sf(int a[2][3]) {
+	return 0;
+}
 
 int main() {
-	int a;
-	int a;
+	struct A a;
+	a.y[2][3] = 5;
 	return 0;
 }

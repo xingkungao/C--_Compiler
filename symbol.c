@@ -10,7 +10,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include "symbol.h"
-//#define DEBUG
+#define DEBUG
 /*
  * global variable 
  */
@@ -48,6 +48,9 @@ symbol_t* getSymbol(char *name) {
 			return entry->data;
 		entry = entry->next;
 	}
+#ifdef DEBUG
+	printf("get no symbol from sym_table, return NULL\n");
+#endif
 	return NULL;
 }
 
@@ -58,6 +61,9 @@ void insertSymbol(symbol_t* symb) {
 	symb->depth = scopeDepth; // assign when insert
 	newEntry->data = symb;
 	newEntry->next = symbolTable[idx].next;
+	newEntry->prev = &symbolTable[idx];
+	if (symbolTable[idx].next) 
+		symbolTable[idx].next->prev = newEntry;
 	symbolTable[idx].next = newEntry;
 
 	newEntry->scope = scopeStack[scopeDepth].scope;
@@ -65,9 +71,6 @@ void insertSymbol(symbol_t* symb) {
 }
 
 void leaveScope() {
-#ifdef DEBUG
-	printf("*************leave ");
-#endif
 	hashEntry_t *entry = scopeStack[scopeDepth].scope;
 	hashEntry_t *current;
 	typeList_t *temp;
@@ -76,24 +79,21 @@ void leaveScope() {
 		current = entry;
 		entry = entry->scope;
 		if (function == current->data->kind) {
+			printf("delete func entry, %s\n", current->data->name);
 			typeList_t* types = current->data->type.func->paramList;
 			while (types) {
 				temp = types;
 				types = types->next;
+				printf("in func entry, param kind %d\n", temp->type->kind);
 
 
-				/*
-				 * pay attention to nested heap-allocated memory 
-				 */
-				/* 
-				 * to be continued
-				 */
-				free(temp->type);
-				free(temp);
+				
+				 // pay attention to nested heap-allocated memory 
+				 // to be continued
+//				free(temp->type);
+//				free(temp);
 			}
-		/*
-		 * delete node from linked list in O(1) time 
-		 */
+		 // delete node from linked list in O(1) time 
 			if (entry) {
 				free(current->data);
 				memcpy(current, current->next, sizeof(hashEntry_t));
@@ -101,8 +101,9 @@ void leaveScope() {
 			}
 		}
 	}
+	scopeDepth--;
 #ifdef DEBUG
-	printf("leaveScope******************\n");
+	printf("*************leaveScope******************\n");
 #endif
 }
 void enterScope() {

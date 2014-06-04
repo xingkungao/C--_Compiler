@@ -21,15 +21,22 @@ typedef enum {TINT, TFLOAT, TID, TSEMI, TCOMMA, TASSIGNOP, TRELOP, TPLUS, TMINUS
 #define MAX_SCOPE 32
 
 typedef struct type vtype_t;
-struct nodeAttr { /* for variable */
+struct nodeAttr {
+	char *name;
+
+	/* is legal */
+	int legal; 
+
 	vtype_t* inhType; //
 	vtype_t* synType; //
+	/* for struct */
 	int inStruct;
 	struct fieldList* structure;  
-	int legal; //
 	/* for function */
-	vtype_t* returnType; //
-	struct typeList* arguments; //
+	int definied;
+	int declared;
+	vtype_t* returnType; 
+	struct typeList* arguments; 
 };
 typedef struct nodeAttr nodeAttr_t;
 struct syntaxTreeNode {
@@ -111,7 +118,7 @@ typedef struct symbol symbol_t;
 /* entry in the hash table */
 struct hashEntry {
 	symbol_t *data;
-	struct hashEntry *next, *scope;
+	struct hashEntry *next, *prev, *scope;
 };
 typedef struct hashEntry hashEntry_t;
 
