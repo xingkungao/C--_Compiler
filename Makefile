@@ -1,13 +1,13 @@
 CC = gcc
-CFLAGS 	= -lfl -ly
+CFLAGS 	= -g -lfl -ly
 FLEX	= flex
 BISON 	= bison
 BFLAGS = -d -v
 
-parser: main.c ex1.tab.c semantic.c sdt.c symbol.c symbol.h 
-	$(CC) main.c ex1.tab.c semantic.c sdt.c symbol.c symbol.h $(CFLAGS) -o parser  
+parser: main.c ex1.tab.c semantic.c sdt.c symbol.c interCode.c IR.c syntax.h symbol.h semantic.h interCode.h  sdt.h
+	$(CC) main.c ex1.tab.c semantic.c sdt.c symbol.c interCode.c IR.c syntax.h symbol.h semantic.h interCode.h  sdt.h $(CFLAGS) -o parser  
 
-ex1.tab.c: ex1.y lex.yy.c symbol.h  
+ex1.tab.c: ex1.y lex.yy.c syntax.h  
 	$(BISON) $(BFLAGS) ex1.y 
 
 lex.yy.c: ex1.l 

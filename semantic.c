@@ -9,7 +9,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-#include "symbol.h"
+#include "semantic.h"
+#define false 0 
+#define true 1
+
 int equalType(vtype_t* a, vtype_t* b) {
 	if (!a && !b)
 		return true;

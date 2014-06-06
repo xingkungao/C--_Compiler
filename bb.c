@@ -1,9 +1,3 @@
-int read(int m) {
-	return m;
-}
-write(int m) {
-	return m;
-}
 int main() {
 	int n;
 	n = read();

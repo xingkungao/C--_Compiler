@@ -71,9 +71,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
-#include "symbol.h"
+#include "syntax.h" 
 #include "lex.yy.c"
-syntaxTreeNode* createNode(type_t type, int prodnum, char *name, int degree, ...);
+syntaxTreeNode* createNode(type_t type, int prodnum, char *name, int degree, ...); 
 void preOrderTraversal(syntaxTreeNode *root, int level);
 void freeMem(syntaxTreeNode* root);
 int errorTag = 0;
@@ -1585,8 +1585,8 @@ yyreduce:
     {
 						(yyval.node) = createNode(Program, 1, "Program", 1, (yyvsp[(1) - (1)].node));
 						root = (yyval.node);
-//						if (!errorTag) 
-//							preOrderTraversal($$, 1);
+						if (!errorTag) 
+							preOrderTraversal((yyval.node), 1);
 			//			freeMem($$);
 					}
     break;
@@ -1721,7 +1721,7 @@ yyreduce:
 
 /* Line 1806 of yacc.c  */
 #line 84 "ex1.y"
-    {(yyval.node) = createNode(VarList, 1, "VarList", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(2) - (3)].node));}
+    {(yyval.node) = createNode(VarList, 1, "VarList", 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node));}
     break;
 
   case 24:
@@ -1784,7 +1784,7 @@ yyreduce:
 
 /* Line 1806 of yacc.c  */
 #line 104 "ex1.y"
-    {(yyval.node) = createNode(Stmt, 4, "Stmt", 4, (yyvsp[(1) - (5)].node), (yyvsp[(2) - (5)].node), (yyvsp[(3) - (5)].node), (yyvsp[(4) - (5)].node));}
+    {(yyval.node) = createNode(Stmt, 4, "Stmt", 5, (yyvsp[(1) - (5)].node), (yyvsp[(2) - (5)].node), (yyvsp[(3) - (5)].node), (yyvsp[(4) - (5)].node), (yyvsp[(5) - (5)].node));}
     break;
 
   case 34:

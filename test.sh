@@ -7,7 +7,7 @@
 #!/bin/bash
 make
 echo 'Basic test case:'
-for i in test_*.c
+for i in Test/test_*.c
 do 
 	printf '_______________%s_______________\n' "$i"
 	./parser $i

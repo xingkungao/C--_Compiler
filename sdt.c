@@ -8,9 +8,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "symbol.h"
+#include "sdt.h"
 void traverse(syntaxTreeNode* root, int space);
-#define DEBUG
+//#define DEBUG
 
 vtype_t* VTYPEINT;
 vtype_t* VTYPEFLOAT;
@@ -31,6 +31,7 @@ void addReadWrite() {
 	read->type.func = (funcType_t*)malloc(sizeof(funcType_t));
 	read->type.func->returnType = VTYPEINT;   
 	read->type.func->paramList = NULL;
+	insertSymbol(read);
 
 	symbol_t* write = (symbol_t*)malloc(sizeof(symbol_t));
 	strcpy(write->name, "write");
@@ -40,7 +41,8 @@ void addReadWrite() {
 	typeList_t* wlist = (typeList_t*)malloc(sizeof(typeList_t));
 	wlist->type = VTYPEINT;
 	wlist->next = NULL;
-	read->type.func->paramList = wlist;
+	write->type.func->paramList = wlist;
+	insertSymbol(write);
 	printf("leave addreadwrite\n");
 }
 
@@ -70,11 +72,11 @@ void checkExtDef(syntaxTreeNode* root, syntaxTreeNode** children, int degree, in
 		case 4: // ExtDef -> Specifier FunDec SEMI
 			{
 				traverse(children[0], space);
-			enterScope();
+//			enterScope();
 				children[1]->attr.inhType = children[0]->attr.synType;
 //				children[1]->attr.defined = 0;
 				traverse(children[1], space);
-			leaveScope();
+//			leaveScope();
 			break;
 			}
 	}
@@ -227,9 +229,9 @@ assert(sbl->type.func->returnType->kind == BASIC);
 
 	switch(root->prodnum) {
 		case 1:  // FunDec -> ID LP VarList RP
-	//		enterScope();
+//			enterScope();
 			traverse(children[2], space);
-	//		leaveScope();
+//			leaveScope();
 			sbl->type.func->paramList = children[2]->attr.arguments;
 			break;
 		case 2:  // FunDec -> ID LP RP
@@ -248,7 +250,7 @@ void checkVarList(syntaxTreeNode* root, syntaxTreeNode** children, int degree, i
 	switch(root->prodnum) {
 		case 1:  // VarList -> ParamDec COMMA VarList 
 //			children[0]->attr.synType = root->attr.arguments->type;
-			traverse(children[0],space);
+			traverse(children[0], space);
 //			type = (vtype_t*)malloc(sizeof(vtype_t));
 //			root->attr.arguments->next = children[0]->attr.synType; 
 			traverse(children[2], space);
@@ -256,6 +258,7 @@ void checkVarList(syntaxTreeNode* root, syntaxTreeNode** children, int degree, i
 			root->attr.arguments = (typeList_t*)malloc(sizeof(typeList_t));
 			root->attr.arguments->type = children[0]->attr.synType;
 			root->attr.arguments->next = children[2]->attr.arguments;
+assert(root->attr.arguments->next);
 			break;
 		case 2: // VarList -> ParamDec 
 			traverse(children[0], space);
@@ -293,6 +296,7 @@ void checkCompSt(syntaxTreeNode* root, syntaxTreeNode** children, int degree, in
 		case 1:  // CompSt -> LC DefList StmtList RC 
 			traverse(children[1], space);
 			children[2]->attr.returnType = root->attr.returnType;
+//assert(root->attr.returnType);
 			traverse(children[2], space);
 	}
 }
@@ -301,15 +305,20 @@ void checkCompSt(syntaxTreeNode* root, syntaxTreeNode** children, int degree, in
 
 void checkStmtList(syntaxTreeNode* root, syntaxTreeNode** children, int degree, int space){
 #ifdef DEBUG
-	printf("enter check_stmtlist\n");
+	printf("enter StmtList\n");
 #endif
 	switch(root->prodnum) {
 		case 1:  // StmtList -> Stmt StmtList
-			children[0]->attr.returnType = children[1]->attr.returnType = root->attr.returnType;
+			printf("here here\n");
+			children[0]->attr.returnType = root->attr.returnType; 
+
+			printf("here here\n");
 assert(children[0]->attr.returnType);
 			traverse(children[0], space);
+			children[1]->attr.returnType = root->attr.returnType;
 			traverse(children[1], space);
 			break;
+		default:;
 	}
 }
 
@@ -668,15 +677,19 @@ assert(root->attr.synType);
 			}
 		case 16:  // Exp -> ID
 			sbl = getSymbol(children[0]->idval);
+			assert(sbl);
 			if (sbl) {
 				printf("get id from table: %s\n", sbl->name);
 				root->attr.synType = sbl->type.var->type;
+				assert(root->attr.synType);
+				/*
 			fieldList_t* flist = root->attr.synType->u.structure;
 			while (flist) {
 				printf("here \n");
 				printf("literal %s\n", flist->name);
 				flist = flist->tail;
 			}
+			*/
 			}
 			else {
 				reportError1(children[0]->lineno, children[0]->idval);

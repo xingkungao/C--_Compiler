@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
-#include "symbol.h"
+#include "syntax.h" 
 #include "lex.yy.c"
-syntaxTreeNode* createNode(type_t type, int prodnum, char *name, int degree, ...);
+syntaxTreeNode* createNode(type_t type, int prodnum, char *name, int degree, ...); 
 void preOrderTraversal(syntaxTreeNode *root, int level);
 void freeMem(syntaxTreeNode* root);
 int errorTag = 0;
@@ -37,8 +37,8 @@ syntaxTreeNode* root;
 Program : ExtDefList {
 						$$ = createNode(Program, 1, "Program", 1, $1);
 						root = $$;
-//						if (!errorTag) 
-//							preOrderTraversal($$, 1);
+						if (!errorTag) 
+							preOrderTraversal($$, 1);
 			//			freeMem($$);
 					}
 		;
@@ -81,7 +81,7 @@ FunDec : ID LP VarList RP {$$ = createNode(FunDec, 1, "FunDec", 4, $1, $2, $3, $
 	   | error RP
 	   ;
 
-VarList : ParamDec COMMA VarList {$$ = createNode(VarList, 1, "VarList", 3, $1, $2, $2);}
+VarList : ParamDec COMMA VarList {$$ = createNode(VarList, 1, "VarList", 3, $1, $2, $3);}
 		| ParamDec {$$ = createNode(VarList, 2, "VarList", 1, $1);}
 		;
 
@@ -101,7 +101,7 @@ StmtList : Stmt StmtList {$$ = createNode(StmtList, 1, "StmtList", 2, $1, $2);}
 Stmt : Exp SEMI {$$ = createNode(Stmt, 1, "Stmt", 2, $1, $2);}
 	 | CompSt {$$ = createNode(Stmt, 2, "Stmt", 1, $1);}
 	 | RETURN Exp SEMI {$$ = createNode(Stmt, 3, "Stmt", 3, $1, $2, $3);}
-	 | IF LP Exp RP Stmt %prec LOWER_THAN_ELSE {$$ = createNode(Stmt, 4, "Stmt", 4, $1, $2, $3, $4);}
+	 | IF LP Exp RP Stmt %prec LOWER_THAN_ELSE {$$ = createNode(Stmt, 4, "Stmt", 5, $1, $2, $3, $4, $5);}
 	 | IF LP Exp RP Stmt ELSE Stmt {$$ = createNode(Stmt, 5, "Stmt", 7, $1, $2, $3, $4, $5, $6, $7);}
 	 | WHILE LP Exp RP Stmt {$$ = createNode(Stmt, 6, "Stmt", 5, $1, $2, $3, $4, $5);}
 	 | error SEMI 
