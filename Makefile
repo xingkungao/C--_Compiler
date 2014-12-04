@@ -1,18 +1,24 @@
-CC = gcc
+CC 		= gcc
 CFLAGS 	= -g -lfl -ly
 FLEX	= flex
 BISON 	= bison
-BFLAGS = -d -v
+BFLAGS  = -d -v
+ACFILES = $(shell find src/ -name "*.c")
+CFILES = $(filter-out src/lex.yy.c, $(ACFILES))
+AHFILES = $(shell find src/ -name "*.h")
+HFILES  = $(filter-out src/ex1.tab.h, $(AHFILES))
 
-parser: main.c ex1.tab.c semantic.c sdt.c symbol.c interCode.c IR.c syntax.h symbol.h semantic.h interCode.h  sdt.h
-	$(CC) main.c ex1.tab.c semantic.c sdt.c symbol.c interCode.c IR.c syntax.h symbol.h semantic.h interCode.h  sdt.h $(CFLAGS) -o parser  
+compiler: $(CFILES) $(HFILES) src/ex1.tab.c
+	$(CC) $(CFILES) $(HFILES) $(CFLAGS) -o compiler 
 
-ex1.tab.c: ex1.y lex.yy.c syntax.h  
-	$(BISON) $(BFLAGS) ex1.y 
+src/ex1.tab.c: src/ex1.y src/lex.yy.c src/syntax.h  
+	$(BISON) $(BFLAGS) src/ex1.y 
+	@mv ex1.tab.c ex1.tab.h ex1.output src/
 
-lex.yy.c: ex1.l 
-	$(FLEX) ex1.l
+src/lex.yy.c: src/ex1.l 
+	$(FLEX) src/ex1.l
+	@mv lex.yy.c src/
 
 .PHONY: clean
 clean:
-	rm -rf parser lex.yy.c ex1.tab.h ex1.tab.c
+	rm -rf compiler src/lex.yy.c src/ex1.tab.h src/ex1.tab.c src/ex1.output

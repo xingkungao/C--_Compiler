@@ -1,0 +1,1680 @@
+make: `parser' is up to date.
+_______________test/test_A_1.c_______________
+  Program (1)
+    ExtDefList (1)
+      ExtDef (1)
+        Specifier (1)
+          TYPE: int
+        FunDec (1)
+          ID: main 
+          LP 
+          RP 
+        CompSt (2)
+          LC 
+          DefList (3)
+            Def (3)
+              Specifier (3)
+                TYPE: int
+              DecList (3)
+                Dec (3)
+                  VarDec (3)
+                    ID: a 
+                  ASSIGNOP 
+                  Exp (3)
+                    INT: 10
+                COMMA 
+                DecList (3)
+                  Dec (3)
+                    VarDec (3)
+                      ID: b 
+                    ASSIGNOP 
+                    Exp (3)
+                      INT: 2
+              SEMI 
+            DefList (4)
+              Def (4)
+                Specifier (4)
+                  TYPE: int
+                DecList (4)
+                  Dec (4)
+                    VarDec (4)
+                      ID: d 
+                    ASSIGNOP 
+                    Exp (4)
+                      Exp (4)
+                        ID: a 
+                      PLUS 
+                      Exp (4)
+                        Exp (4)
+                          ID: a 
+                        STAR 
+                        Exp (4)
+                          ID: b 
+                SEMI 
+          StmtList (5)
+            Stmt (5)
+              Exp (5)
+                ID: write 
+                LP 
+                Args (5)
+                  Exp (5)
+                    ID: d 
+                RP 
+              SEMI 
+            StmtList (6)
+              Stmt (6)
+                Exp (6)
+                  Exp (6)
+                    ID: d 
+                  ASSIGNOP 
+                  Exp (6)
+                    Exp (6)
+                      ID: a 
+                    DIV 
+                    Exp (6)
+                      ID: b 
+                SEMI 
+              StmtList (7)
+                Stmt (7)
+                  Exp (7)
+                    ID: write 
+                    LP 
+                    Args (7)
+                      Exp (7)
+                        ID: d 
+                    RP 
+                  SEMI 
+                StmtList (8)
+                  Stmt (8)
+                    RETURN 
+                    Exp (8)
+                      INT: 0
+                    SEMI 
+          RC 
+enter addreadwrite
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: read, depth: 0
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: write, depth: 0
+               type: function
+               return type: basic
+                  param: 
+basic
+leave addreadwrite
+*************enter scope******************
+get no symbol from sym_table by main, return NULL
+name is (null)
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: main, depth: 1
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: a, depth: 1
+               type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: b, depth: 1
+               type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: d, depth: 1
+               type: basic
+get id from table: a
+get id from table: a
+get id from table: b
+here here
+here here
+here here
+here here
+get id from table: d
+get id from table: a
+get id from table: b
+here here
+here here
+here here
+here here
+*************enter leaveScope******************
+*************leaveScope******************
+
+
+
+
+
+enter addreadwrite
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: read, depth: 0
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: write, depth: 0
+               type: function
+               return type: basic
+                  param: 
+basic
+leave addreadwrite
+enter translate
+enter translate
+enter translate
+enter translateExtDef
+enter translate
+enter translate
+*************enter scope******************
+enter translate
+enter translateFunDec
+enter translate
+enter translateCompst
+*************enter scope******************
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translateDec
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: a, depth: 2
+               type: basic
+flkasjdflaksjflaksfjalskjfklasdfjalksd
+enter translateExp
+enter translate
+enter translate
+enter translate
+enter translateDec
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: b, depth: 2
+               type: basic
+flkasjdflaksjflaksfjalskjfklasdfjalksd
+enter translateExp
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translateDec
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: d, depth: 2
+               type: basic
+flkasjdflaksjflaksfjalskjfklasdfjalksd
+enter translateExp
+enter translateExp
+exp->id, id name is a
+to here here
+to here
+enter translateExp
+enter translateExp
+exp->id, id name is a
+to here here
+to here
+enter translateExp
+exp->id, id name is b
+to here here
+to here
+enter translate
+enter translate
+enter translate
+enter translate
+enter translateStmt
+exp semi
+enter translateExp
+get one func from symbol table: write
+there
+enter translateArgs
+enter translateExp
+exp->id, id name is d
+to here here
+to here
+hhhhhhhhhhhhhhhhhhh
+enter translate
+enter translate
+enter translateStmt
+exp semi
+enter translateExp
+enter translateExp
+exp->id, id name is d
+to here
+to here
+to here
+enter translateExp
+enter translateExp
+exp->id, id name is a
+to here here
+to here
+enter translateExp
+exp->id, id name is b
+to here here
+to here
+enter translate
+enter translate
+enter translateStmt
+exp semi
+enter translateExp
+get one func from symbol table: write
+there
+enter translateArgs
+enter translateExp
+exp->id, id name is d
+to here here
+to here
+hhhhhhhhhhhhhhhhhhh
+enter translate
+enter translate
+enter translateStmt
+return exp semi
+enter translateExp
+enter translate
+*************enter leaveScope******************
+*************leaveScope******************
+*************enter leaveScope******************
+*************leaveScope******************
+enter translate
+in genecode**************
+
+_______________test/test_A_2.c_______________
+  Program (1)
+    ExtDefList (1)
+      ExtDef (1)
+        Specifier (1)
+          TYPE: int
+        FunDec (1)
+          ID: main 
+          LP 
+          RP 
+        CompSt (2)
+          LC 
+          DefList (3)
+            Def (3)
+              Specifier (3)
+                TYPE: int
+              DecList (3)
+                Dec (3)
+                  VarDec (3)
+                    ID: a 
+                  ASSIGNOP 
+                  Exp (3)
+                    INT: 1
+                COMMA 
+                DecList (3)
+                  Dec (3)
+                    VarDec (3)
+                      ID: b 
+                    ASSIGNOP 
+                    Exp (3)
+                      MINUS 
+                      Exp (3)
+                        INT: 1
+              SEMI 
+            DefList (4)
+              Def (4)
+                Specifier (4)
+                  TYPE: int
+                DecList (4)
+                  Dec (4)
+                    VarDec (4)
+                      ID: c 
+                    ASSIGNOP 
+                    Exp (4)
+                      ID: read 
+                      LP 
+                      RP 
+                SEMI 
+          StmtList (5)
+            Stmt (5)
+              IF 
+              LP 
+              Exp (5)
+                Exp (5)
+                  Exp (5)
+                    ID: c 
+                  RELOP 
+                  Exp (5)
+                    ID: a 
+                AND 
+                Exp (5)
+                  Exp (5)
+                    ID: c 
+                  RELOP 
+                  Exp (5)
+                    ID: b 
+              RP 
+              Stmt (6)
+                Exp (6)
+                  ID: write 
+                  LP 
+                  Args (6)
+                    Exp (6)
+                      ID: a 
+                  RP 
+                SEMI 
+              ELSE 
+              Stmt (8)
+                Exp (8)
+                  ID: write 
+                  LP 
+                  Args (8)
+                    Exp (8)
+                      ID: b 
+                  RP 
+                SEMI 
+            StmtList (9)
+              Stmt (9)
+                RETURN 
+                Exp (9)
+                  INT: 0
+                SEMI 
+          RC 
+enter addreadwrite
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: read, depth: 0
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: write, depth: 0
+               type: function
+               return type: basic
+                  param: 
+basic
+leave addreadwrite
+*************enter scope******************
+get no symbol from sym_table by main, return NULL
+name is (null)
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: main, depth: 1
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: a, depth: 1
+               type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: b, depth: 1
+               type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: c, depth: 1
+               type: basic
+here here
+here here
+get id from table: c
+get id from table: a
+get id from table: c
+get id from table: b
+here here
+here here
+*************enter leaveScope******************
+*************leaveScope******************
+
+
+
+
+
+enter addreadwrite
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: read, depth: 0
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: write, depth: 0
+               type: function
+               return type: basic
+                  param: 
+basic
+leave addreadwrite
+enter translate
+enter translate
+enter translate
+enter translateExtDef
+enter translate
+enter translate
+*************enter scope******************
+enter translate
+enter translateFunDec
+enter translate
+enter translateCompst
+*************enter scope******************
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translateDec
+enter translateVarDec
+SYMBOL_TABLE::: insert n
+_______________test/test_A_3.c_______________
+  Program (1)
+    ExtDefList (1)
+      ExtDef (1)
+        Specifier (1)
+          TYPE: int
+        FunDec (1)
+          ID: main 
+          LP 
+          RP 
+        CompSt (2)
+          LC 
+          DefList (3)
+            Def (3)
+              Specifier (3)
+                TYPE: int
+              DecList (3)
+                Dec (3)
+                  VarDec (3)
+                    ID: i 
+                  ASSIGNOP 
+                  Exp (3)
+                    INT: 5
+              SEMI 
+          StmtList (4)
+            Stmt (4)
+              WHILE 
+              LP 
+              Exp (4)
+                Exp (4)
+                  ID: i 
+                RELOP 
+                Exp (4)
+                  INT: 0
+              RP 
+              Stmt (4)
+                CompSt (4)
+                  LC 
+                  StmtList (5)
+                    Stmt (5)
+                      IF 
+                      LP 
+                      Exp (5)
+                        Exp (5)
+                          Exp (5)
+                            ID: i 
+                          RELOP 
+                          Exp (5)
+                            INT: 2
+                        AND 
+                        Exp (5)
+                          Exp (5)
+                            ID: i 
+                          RELOP 
+                          Exp (5)
+                            INT: 4
+                      RP 
+                      Stmt (6)
+                        Exp (6)
+                          ID: write 
+                          LP 
+                          Args (6)
+                            Exp (6)
+                              ID: i 
+                          RP 
+                        SEMI 
+                    StmtList (7)
+                      Stmt (7)
+                        Exp (7)
+                          Exp (7)
+                            ID: i 
+                          ASSIGNOP 
+                          Exp (7)
+                            Exp (7)
+                              ID: i 
+                            MINUS 
+                            Exp (7)
+                              INT: 1
+                        SEMI 
+                  RC 
+            StmtList (9)
+              Stmt (9)
+                RETURN 
+                Exp (9)
+                  INT: 0
+                SEMI 
+          RC 
+enter addreadwrite
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: read, depth: 0
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: write, depth: 0
+               type: function
+               return type: basic
+                  param: 
+basic
+leave addreadwrite
+*************enter scope******************
+get no symbol from sym_table by main, return NULL
+name is (null)
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: main, depth: 1
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: i, depth: 1
+               type: basic
+here here
+here here
+get id from table: i
+*************enter scope******************
+here here
+here here
+get id from table: i
+get id from table: i
+here here
+here here
+get id from table: i
+get id from table: i
+*************enter leaveScope******************
+*************leaveScope******************
+here here
+here here
+*************enter leaveScope******************
+*************leaveScope******************
+
+
+
+
+
+enter addreadwrite
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: read, depth: 0
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: write, depth: 0
+               type: function
+               return type: basic
+                  param: 
+basic
+leave addreadwrite
+enter translate
+enter translate
+enter translate
+enter translateExtDef
+enter translate
+enter translate
+*************enter scope******************
+enter translate
+enter translateFunDec
+enter translate
+enter translateCompst
+*************enter scope******************
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translateDec
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: i, depth: 2
+               type: basic
+flkasjdflaksjflaksfjalskjfklasdfjalksd
+enter translateExp
+enter translate
+enter translate
+enter translate
+enter translate
+enter translateStmt
+while lp exp rp stmt
+enter translateCond
+enter translateExp
+exp->id, id name is i
+to here here
+to here
+enter translateExp
+enter translateStmt
+exp compst
+enter translateCompst
+*************enter scope******************
+enter translate
+enter translate
+enter translate
+enter translateStmt
+if lp exp rp stmt 
+enter translateCond
+enter translateCond
+enter translateExp
+exp->id, id name is i
+to here here
+to here
+enter translateExp
+enter translateCond
+enter translateExp
+exp->id, id name is i
+to here here
+to here
+enter translateExp
+enter translateStmt
+exp semi
+enter translateExp
+get one func from symbol table: write
+there
+enter translateArgs
+enter translateExp
+exp->id, id name is i
+to here here
+to here
+hhhhhhhhhhhhhhhhhhh
+enter translate
+enter translate
+enter translateStmt
+exp semi
+enter translateExp
+enter translateExp
+exp->id, id name is i
+to here
+to here
+to here
+enter translateExp
+enter translateExp
+exp->id, id name is i
+to here here
+to here
+enter translateExp
+enter translate
+*************enter leaveScope******************
+*************leaveScope******************
+enter translate
+enter translate
+enter translateStmt
+return exp semi
+enter translateExp
+enter translate
+*************enter leaveScope******************
+*************leaveScope******************
+*************enter leaveScope******************
+*************leaveScope******************
+enter translate
+in genecode**************
+
+_______________test/test_A_4.c_______________
+  Program (1)
+    ExtDefList (1)
+      ExtDef (1)
+        Specifier (1)
+          TYPE: int
+        FunDec (1)
+          ID: sum 
+          LP 
+          VarList (1)
+            ParamDec (1)
+              Specifier (1)
+                TYPE: int
+              VarDec (1)
+                ID: x 
+            COMMA 
+            VarList (1)
+              ParamDec (1)
+                Specifier (1)
+                  TYPE: int
+                VarDec (1)
+                  ID: y 
+          RP 
+        CompSt (2)
+          LC 
+          StmtList (3)
+            Stmt (3)
+              RETURN 
+              Exp (3)
+                Exp (3)
+                  ID: x 
+                PLUS 
+                Exp (3)
+                  ID: y 
+              SEMI 
+          RC 
+      ExtDefList (6)
+        ExtDef (6)
+          Specifier (6)
+            TYPE: int
+          FunDec (6)
+            ID: main 
+            LP 
+            RP 
+          CompSt (7)
+            LC 
+            DefList (8)
+              Def (8)
+                Specifier (8)
+                  TYPE: int
+                DecList (8)
+                  Dec (8)
+                    VarDec (8)
+                      ID: a 
+                    ASSIGNOP 
+                    Exp (8)
+                      INT: 3
+                  COMMA 
+                  DecList (8)
+                    Dec (8)
+                      VarDec (8)
+                        ID: b 
+                      ASSIGNOP 
+                      Exp (8)
+                        INT: 2
+                SEMI 
+              DefList (9)
+                Def (9)
+                  Specifier (9)
+                    TYPE: int
+                  DecList (9)
+                    Dec (9)
+                      VarDec (9)
+                        ID: c 
+                      ASSIGNOP 
+                      Exp (9)
+                        ID: sum 
+                        LP 
+                        Args (9)
+                          Exp (9)
+                            ID: a 
+                          COMMA 
+                          Args (9)
+                            Exp (9)
+                              ID: b 
+                        RP 
+                  SEMI 
+            StmtList (10)
+              Stmt (10)
+                Exp (10)
+                  ID: write 
+                  LP 
+                  Args (10)
+                    Exp (10)
+                      ID: c 
+                  RP 
+                SEMI 
+              StmtList (11)
+                Stmt (11)
+                  RETURN 
+                  Exp (11)
+                    INT: 0
+                  SEMI 
+            RC 
+enter addreadwrite
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: read, depth: 0
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: write, depth: 0
+               type: function
+               return type: basic
+                  param: 
+basic
+leave addreadwrite
+*************enter scope******************
+get no symbol from sym_table by sum, return NULL
+name is (null)
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: sum, depth: 1
+               type: function
+               return type: basic
+in paramdec, type is 0
+in paramdec, type is 0
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: x, depth: 1
+               type: basic
+in paramdec, type is 0
+in paramdec, type is 0
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: y, depth: 1
+               type: basic
+here here
+here here
+get id from table: x
+get id from table: y
+*************enter leaveScope******************
+*************leaveScope******************
+*************enter scope******************
+get no symbol from sym_table by main, return NULL
+name is (null)
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: main, depth: 1
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: a, depth: 1
+               type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: b, depth: 1
+               type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: c, depth: 1
+               type: basic
+here here
+here here
+here here
+here here
+*************enter leaveScope******************
+*************leaveScope******************
+
+
+
+
+
+enter addreadwrite
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: read, depth: 0
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: write, depth: 0
+               type: function
+               return type: basic
+                  param: 
+basic
+leave addreadwrite
+enter translate
+enter translate
+enter translate
+enter translateExtDef
+enter translate
+enter translate
+*************enter scope******************
+enter translate
+enter translateFunDec
+enter translate
+enter translate
+enter translateParamDec
+name is 
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: x, depth: 1
+               type: basic
+enter translate
+enter translate
+enter translate
+enter translateParamDec
+name is 
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: y, depth: 1
+               type: basic
+enter translate
+enter translateCompst
+*************enter scope******************
+enter translate
+enter translate
+enter translate
+enter translateStmt
+return exp semi
+enter translateExp
+enter translateExp
+exp->id, id name is x
+to here here
+to here
+enter translateExp
+exp->id, id name is y
+to here here
+to here
+enter translate
+*************enter leaveScope******************
+*************leaveScope******************
+*************enter leaveScope******************
+*************leaveScope******************
+enter translate
+enter translate
+enter translateExtDef
+enter translate
+enter translate
+*************enter scope******************
+enter translate
+enter translateFunDec
+enter translate
+enter translateCompst
+*************enter scope******************
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translateDec
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: a, depth: 2
+               type: basic
+flkasjdflaksjflaksfjalskjfklasdfjalksd
+enter translateExp
+enter translate
+enter translate
+enter translate
+enter translateDec
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: b, depth: 2
+               type: basic
+flkasjdflaksjflaksfjalskjfklasdfjalksd
+enter translateExp
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translateDec
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: c, depth: 2
+               type: basic
+flkasjdflaksjflaksfjalskjfklasdfjalksd
+enter translateExp
+get no symbol from sym_table by sum, return NULL
+get one func from symbol table: sum
+there
+enter translateArgs
+enter translateExp
+exp->id, id name is a
+to here here
+to here
+hhhhhhhhhhhhhhhhhhh
+enter translateArgs
+enter translateExp
+exp->id, id name is b
+to here here
+to here
+hhhhhhhhhhhhhhhhhhh
+enter translate
+enter translate
+enter translate
+enter translate
+enter translateStmt
+exp semi
+enter translateExp
+get one func from symbol table: write
+there
+enter translateArgs
+enter translateExp
+exp->id, id name is c
+to here here
+to here
+hhhhhhhhhhhhhhhhhhh
+enter translate
+enter translate
+enter translateStmt
+return exp semi
+enter translateExp
+enter translate
+*************enter leaveScope******************
+*************leaveScope******************
+*************enter leaveScope******************
+*************leaveScope******************
+enter translate
+in genecode**************
+
+_______________test/test_A_5.c_______________
+  Program (1)
+    ExtDefList (1)
+      ExtDef (1)
+        Specifier (1)
+          TYPE: int
+        FunDec (1)
+          ID: gcd 
+          LP 
+          VarList (1)
+            ParamDec (1)
+              Specifier (1)
+                TYPE: int
+              VarDec (1)
+                ID: a 
+            COMMA 
+            VarList (1)
+              ParamDec (1)
+                Specifier (1)
+                  TYPE: int
+                VarDec (1)
+                  ID: b 
+          RP 
+        CompSt (2)
+          LC 
+          StmtList (3)
+            Stmt (3)
+              IF 
+              LP 
+              Exp (3)
+                Exp (3)
+                  ID: b 
+                RELOP 
+                Exp (3)
+                  INT: 0
+              RP 
+              Stmt (3)
+                RETURN 
+                Exp (3)
+                  ID: a 
+                SEMI 
+              ELSE 
+              Stmt (4)
+                RETURN 
+                Exp (4)
+                  ID: gcd 
+                  LP 
+                  Args (4)
+                    Exp (4)
+                      ID: b 
+                    COMMA 
+                    Args (4)
+                      Exp (4)
+                        Exp (4)
+                          ID: a 
+                        MINUS 
+                        Exp (4)
+                          Exp (4)
+                            ID: b 
+                          STAR 
+                          Exp (4)
+                            LP 
+                            Exp (4)
+                              Exp (4)
+                                ID: a 
+                              DIV 
+                              Exp (4)
+                                ID: b 
+                            RP 
+                  RP 
+                SEMI 
+          RC 
+      ExtDefList (7)
+        ExtDef (7)
+          Specifier (7)
+            TYPE: int
+          FunDec (7)
+            ID: main 
+            LP 
+            RP 
+          CompSt (8)
+            LC 
+            DefList (9)
+              Def (9)
+                Specifier (9)
+                  TYPE: int
+                DecList (9)
+                  Dec (9)
+                    VarDec (9)
+                      ID: i 
+                    ASSIGNOP 
+                    Exp (9)
+                      INT: 2013
+                  COMMA 
+                  DecList (9)
+                    Dec (9)
+                      VarDec (9)
+                        ID: j 
+                      ASSIGNOP 
+                      Exp (9)
+                        INT: 66
+                SEMI 
+              DefList (10)
+                Def (10)
+                  Specifier (10)
+                    TYPE: int
+                  DecList (10)
+                    Dec (10)
+                      VarDec (10)
+                        ID: d 
+                      ASSIGNOP 
+                      Exp (10)
+                        ID: gcd 
+                        LP 
+                        Args (10)
+                          Exp (10)
+                            ID: i 
+                          COMMA 
+                          Args (10)
+                            Exp (10)
+                              ID: j 
+                        RP 
+                  SEMI 
+            StmtList (11)
+              Stmt (11)
+                Exp (11)
+                  ID: write 
+                  LP 
+                  Args (11)
+                    Exp (11)
+                      ID: d 
+                  RP 
+                SEMI 
+              StmtList (12)
+                Stmt (12)
+                  RETURN 
+                  Exp (12)
+                    INT: 0
+                  SEMI 
+            RC 
+enter addreadwrite
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: read, depth: 0
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: write, depth: 0
+               type: function
+               return type: basic
+                  param: 
+basic
+leave addreadwrite
+*************enter scope******************
+get no symbol from sym_table by gcd, return NULL
+name is (null)
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: gcd, depth: 1
+               type: function
+               return type: basic
+in paramdec, type is 0
+in paramdec, type is 0
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: a, depth: 1
+               type: basic
+in paramdec, type is 0
+in paramdec, type is 0
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: b, depth: 1
+               type: basic
+here here
+here here
+get id from table: b
+get id from table: a
+*************enter leaveScope******************
+*************leaveScope******************
+*************enter scope******************
+get no symbol from sym_table by main, return NULL
+name is (null)
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: main, depth: 1
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: i, depth: 1
+               type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: j, depth: 1
+               type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: d, depth: 1
+               type: basic
+here here
+here here
+here here
+here here
+*************enter leaveScope******************
+*************leaveScope******************
+
+
+
+
+
+enter addreadwrite
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: read, depth: 0
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: write, depth: 0
+               type: function
+               return type: basic
+                  param: 
+basic
+leave addreadwrite
+enter translate
+enter translate
+enter translate
+enter translateExtDef
+enter translate
+enter translate
+*************enter scope******************
+enter translate
+enter translateFunDec
+enter translate
+enter translate
+enter translateParamDec
+name is 
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: a, depth: 1
+               type: basic
+enter translate
+enter translate
+enter translate
+enter translateParamDec
+name is 
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: b, depth: 1
+               type: basic
+enter translate
+enter translateCompst
+*************enter scope******************
+enter translate
+enter translate
+enter translate
+enter translateStmt
+if lp exp rp stmt else stmt 
+enter translateCond
+enter translateExp
+exp->id, id name is b
+to here here
+to here
+enter translateExp
+enter translateStmt
+return exp semi
+enter translateExp
+exp->id, id name is a
+to here here
+to here
+enter translateStmt
+return exp semi
+enter translateExp
+get no symbol from sym_table by gcd, return NULL
+get one func from symbol table: gcd
+there
+enter translateArgs
+enter translateExp
+exp->id, id name is b
+to here here
+to here
+hhhhhhhhhhhhhhhhhhh
+enter translateArgs
+enter translateExp
+enter translateExp
+exp->id, id name is a
+to here here
+to here
+enter translateExp
+enter translateExp
+exp->id, id name is b
+to here here
+to here
+enter translateExp
+enter translateExp
+enter translateExp
+exp->id, id name is a
+to here here
+to here
+enter translateExp
+exp->id, id name is b
+to here here
+to here
+hhhhhhhhhhhhhhhhhhh
+enter translate
+*************enter leaveScope******************
+*************leaveScope******************
+*************enter leaveScope******************
+*************leaveScope******************
+enter translate
+enter translate
+enter translateExtDef
+enter translate
+enter translate
+*************enter scope******************
+enter translate
+enter translateFunDec
+enter translate
+enter translateCompst
+*************enter scope******************
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translateDec
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: i, depth: 2
+               type: basic
+flkasjdflaksjflaksfjalskjfklasdfjalksd
+enter translateExp
+enter translate
+enter translate
+enter translate
+enter translateDec
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: j, depth: 2
+               type: basic
+flkasjdflaksjflaksfjalskjfklasdfjalksd
+enter translateExp
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translateDec
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: d, depth: 2
+               type: basic
+flkasjdflaksjflaksfjalskjfklasdfjalksd
+enter translateExp
+get no symbol from sym_table by gcd, return NULL
+get one func from symbol table: gcd
+there
+enter translateArgs
+enter translateExp
+exp->id, id name is i
+to here here
+to here
+hhhhhhhhhhhhhhhhhhh
+enter translateArgs
+enter translateExp
+exp->id, id name is j
+to here here
+to here
+hhhhhhhhhhhhhhhhhhh
+enter translate
+enter translate
+enter translate
+enter translate
+enter translateStmt
+exp semi
+enter translateExp
+get one func from symbol table: write
+there
+enter translateArgs
+enter translateExp
+exp->id, id name is d
+to here here
+to here
+hhhhhhhhhhhhhhhhhhh
+enter translate
+enter translate
+enter translateStmt
+return exp semi
+enter translateExp
+enter translate
+*************enter leaveScope******************
+*************leaveScope******************
+*************enter leaveScope******************
+*************leaveScope******************
+enter translate
+in genecode**************
+
+_______________test/test_A_6.c_______________
+  Program (1)
+    ExtDefList (1)
+      ExtDef (1)
+        Specifier (1)
+          TYPE: int
+        FunDec (1)
+          ID: main 
+          LP 
+          RP 
+        CompSt (2)
+          LC 
+          DefList (3)
+            Def (3)
+              Specifier (3)
+                TYPE: int
+              DecList (3)
+                Dec (3)
+                  VarDec (3)
+                    ID: i 
+                  ASSIGNOP 
+                  Exp (3)
+                    INT: 0
+                COMMA 
+                DecList (3)
+                  Dec (3)
+                    VarDec (3)
+                      ID: j 
+                  COMMA 
+                  DecList (3)
+                    Dec (3)
+                      VarDec (3)
+                        ID: n 
+                      ASSIGNOP 
+                      Exp (3)
+                        INT: 4
+              SEMI 
+          StmtList (4)
+            Stmt (4)
+              WHILE 
+              LP 
+              Exp (4)
+                Exp (4)
+                  ID: i 
+                RELOP 
+                Exp (4)
+                  ID: n 
+              RP 
+              Stmt (5)
+                CompSt (5)
+                  LC 
+                  StmtList (6)
+                    Stmt (6)
+                      Exp (6)
+                        Exp (6)
+                          ID: j 
+                        ASSIGNOP 
+                        Exp (6)
+                          INT: 0
+                      SEMI 
+                    StmtList (7)
+                      Stmt (7)
+                        WHILE 
+                        LP 
+                        Exp (7)
+                          Exp (7)
+                            ID: j 
+                          RELOP 
+                          Exp (7)
+                            ID: i 
+                        RP 
+                        Stmt (8)
+                          CompSt (8)
+                            LC 
+                            StmtList (9)
+                              Stmt (9)
+                                Exp (9)
+                                  ID: write 
+                                  LP 
+                                  Args (9)
+                                    Exp (9)
+                                      ID: j 
+                                  RP 
+                                SEMI 
+                              StmtList (10)
+                                Stmt (10)
+                                  Exp (10)
+                                    Exp (10)
+                                      ID: j 
+                                    ASSIGNOP 
+                                    Exp (10)
+                                      Exp (10)
+                                        ID: j 
+                                      PLUS 
+                                      Exp (10)
+                                        INT: 1
+                                  SEMI 
+                            RC 
+                      StmtList (12)
+                        Stmt (12)
+                          Exp (12)
+                            Exp (12)
+                              ID: i 
+                            ASSIGNOP 
+                            Exp (12)
+                              Exp (12)
+                                ID: i 
+                              PLUS 
+                              Exp (12)
+                                INT: 1
+                          SEMI 
+                  RC 
+            StmtList (14)
+              Stmt (14)
+                RETURN 
+                Exp (14)
+                  INT: 0
+                SEMI 
+          RC 
+enter addreadwrite
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: read, depth: 0
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: write, depth: 0
+               type: function
+               return type: basic
+                  param: 
+basic
+leave addreadwrite
+*************enter scope******************
+get no symbol from sym_table by main, return NULL
+name is (null)
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: main, depth: 1
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: i, depth: 1
+               type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: j, depth: 1
+               type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: n, depth: 1
+               type: basic
+here here
+here here
+get id from table: i
+get id from table: n
+*************enter scope******************
+here here
+here here
+get id from table: j
+here here
+here here
+get id from table: j
+get id from table: i
+*************enter scope******************
+here here
+here here
+here here
+here here
+get id from table: j
+get id from table: j
+*************enter leaveScope******************
+*************leaveScope******************
+here here
+here here
+get id from table: i
+get id from table: i
+*************enter leaveScope******************
+*************leaveScope******************
+here here
+here here
+*************enter leaveScope******************
+*************leaveScope******************
+
+
+
+
+
+enter addreadwrite
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: read, depth: 0
+               type: function
+               return type: basic
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: write, depth: 0
+               type: function
+               return type: basic
+                  param: 
+basic
+leave addreadwrite
+enter translate
+enter translate
+enter translate
+enter translateExtDef
+enter translate
+enter translate
+*************enter scope******************
+enter translate
+enter translateFunDec
+enter translate
+enter translateCompst
+*************enter scope******************
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translate
+enter translateDec
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: i, depth: 2
+               type: basic
+flkasjdflaksjflaksfjalskjfklasdfjalksd
+enter translateExp
+enter translate
+enter translate
+enter translate
+enter translateDec
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: j, depth: 2
+               type: basic
+enter translate
+enter translate
+enter translate
+enter translateDec
+enter translateVarDec
+SYMBOL_TABLE::: insert new entry in symbol talbe, name: n, depth: 2
+               type: basic
+flkasjdflaksjflaksfjalskjfklasdfjalksd
+enter translateExp
+enter translate
+enter translate
+enter translate
+enter translate
+enter translateStmt
+while lp exp rp stmt
+enter translateCond
+enter translateExp
+exp->id, id name is i
+to here here
+to here
+enter translateExp
+exp->id, id name is n
+to here here
+to here
+enter translateStmt
+exp compst
+enter translateCompst
+*************enter scope******************
+enter translate
+enter translate
+enter translate
+enter translateStmt
+exp semi
+enter translateExp
+enter translateExp
+exp->id, id name is j
+to here
+to here
+to here
+enter translateExp
+enter translate
+enter translate
+enter translateStmt
+while lp exp rp stmt
+enter translateCond
+enter translateExp
+exp->id, id name is j
+to here here
+to here
+enter translateExp
+exp->id, id name is i
+to here here
+to here
+enter translateStmt
+exp compst
+enter translateCompst
+*************enter scope******************
+enter translate
+enter translate
+enter translate
+enter translateStmt
+exp semi
+enter translateExp
+get one func from symbol table: write
+there
+enter translateArgs
+enter translateExp
+exp->id, id name is j
+to here here
+to here
+hhhhhhhhhhhhhhhhhhh
+enter translate
+enter translate
+enter translateStmt
+exp semi
+enter translateExp
+enter translateExp
+exp->id, id name is j
+to here
+to here
+to here
+enter translateExp
+enter translateExp
+exp->id, id name is j
+to here here
+to here
+enter translateExp
+enter translate
+*************enter leaveScope******************
+*************leaveScope******************
+enter translate
+enter translate
+enter translateStmt
+exp semi
+enter translateExp
+enter translateExp
+exp->id, id name is i
+to here
+to here
+to here
+enter translateExp
+enter translateExp
+exp->id, id name is i
+to here here
+to here
+enter translateExp
+enter translate
+*************enter leaveScope******************
+*************leaveScope******************
+enter translate
+enter translate
+enter translateStmt
+return exp semi
+enter translateExp
+enter translate
+*************enter leaveScope******************
+*************leaveScope******************
+*************enter leaveScope******************
+*************leaveScope******************
+enter translate
+in genecode**************
+

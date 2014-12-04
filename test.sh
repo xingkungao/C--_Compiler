@@ -5,11 +5,23 @@
 # Created Time: Mon 05 May 2014 11:39:44 PM CST
 #########################################################################
 #!/bin/bash
-make
-echo 'Basic test case:'
-for i in Test/test_*.c
+make 
+for i in 'test'/*.s
+do
+	rm $i
+done
+for i in 'test'/*.c
 do 
 	printf '_______________%s_______________\n' "$i"
-	./parser $i
+	./compiler $i ${i%%.*}.s
 	echo ''
 done
+
+#for j in Test/*.s
+#do
+#	printf '_______________%s_______________\n' "$j"
+#	spim -file $j;
+#	echo ''
+#done
+
+
